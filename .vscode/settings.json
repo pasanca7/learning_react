@@ -1,0 +1,6 @@
+{
+    "editor.linkedEditing": true,
+    "editor.cursorBlinking": "expand",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.cursorSmoothCaretAnimation": "on"
+}
