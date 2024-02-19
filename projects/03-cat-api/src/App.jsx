@@ -1,28 +1,14 @@
-import { useState, useEffect } from 'react'
 import './App.css'
-import { getRandomFact } from './services/facts.js'
-
-const PREFIX_CAT_PIC_ENDPOINT = 'https://cataas.com/cat/says/'
+import { useCatImage } from './hooks/useCatImage.js'
+import { useCatFact } from './hooks/useCatFact.js'
+import { Otro } from './components/otro.jsx'
 
 function App() {
-  const [fact, setFact] = useState('')
-  const [imageUrl, setImageUrl] = useState('https://cataas.com/cat')
-
-  useEffect(() => {
-    getRandomFact().then(newFact => setFact(newFact))
-  }, [])
-
-
-  useEffect(() => {
-    if (!fact) return
-      const firstWord = fact.split(' ')[0]
-      fetch(PREFIX_CAT_PIC_ENDPOINT + firstWord)
-      .then(res => setImageUrl(res.url))
-  }, [fact])
+  const { fact, refreshFact} = useCatFact()
+  const { imageUrl } = useCatImage({ fact })
 
   const handleClick = async () => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
+    refreshFact()
   }
 
   return (
@@ -32,6 +18,7 @@ function App() {
       <section>
         <p>{fact}</p>
         <img src={imageUrl} alt={`Image of a cat with the word ${fact.split(' ')[0]}`} />
+        <Otro/>
       </section>
     </main>
   )
