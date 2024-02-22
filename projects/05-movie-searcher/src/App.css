@@ -33,6 +33,10 @@ form {
     text-align: center;
 }
 
+.movie p {
+    text-align: center;
+}
+
 .movie img {
     border-radius: 8px;
     margin-top: 16px;
